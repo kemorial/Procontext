@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    private const USER_VALIDATOR = [
-        'email'=>'required|',
-        'price'=>'required|numeric',
-    ];
     public function showAll()
     {
         $users = User::all();
@@ -23,19 +19,25 @@ class UserController extends Controller
     }
     public function store(Request $request)
     {
-        $validated = $request->validate(self::USER_VALIDATOR);
-        User::create([
-            'name'=>$validated['name'],
-            'email'=>$validated['email'],
-            'age'=>$validated['age']
+        $user = User::create([
+            'name'=>$request['name'],
+            'email'=>$request['email'],
+            'age'=>$request['age']
         ]);
-        return response()->json($validated);
+        return response()->json($user);
     }
     public function update(Request $request,int $id)
     {
-        $validated = $request->validate(self::USER_VALIDATOR);
         $user = User::find($id);
-        return response()->json();
+        isset($request['name'])?$name = $request['name']: $name = $user['name'];
+        isset($request['email'])?$email = $request['email']: $email = $user['email'];
+        isset($request['age'])?$age = $request['age']: $age = $user['age'];
+        $user->fill([
+            'name'=>$name,
+            'email'=>$email,
+            'age'=>$age
+        ]);
+        return response()->json($user);
     }
     public function delete(int $id)
     {
