@@ -2,7 +2,7 @@
 
 ## Для запуска проекта: 
 - ### Через  bash:
-    - bash start/sh
+    - bash start.sh
 - ### Вручную:
     - docker-compose up -d --build
     - composer install
