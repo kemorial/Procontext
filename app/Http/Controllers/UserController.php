@@ -37,6 +37,7 @@ class UserController extends Controller
             'email'=>$email,
             'age'=>$age
         ]);
+        $user->save();
         return response()->json($user);
     }
     public function delete(int $id)
