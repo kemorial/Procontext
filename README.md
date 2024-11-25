@@ -9,3 +9,4 @@
     - composer install
     - docker-compose up -d --build
     - docker exec -it procontext_php bash -c "php artisan migrate"
+/* миграция не всегда с первого раза работает)*/
