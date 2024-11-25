@@ -3,7 +3,9 @@
 ## Для запуска проекта: 
 - ### Через  bash:
     - bash start.sh
+    - docker exec -it procontext_php bash -c "php artisan migrate"
+
 - ### Вручную:
-    - docker-compose up -d --build
     - composer install
-    - php artisan migrate
+    - docker-compose up -d --build
+    - docker exec -it procontext_php bash -c "php artisan migrate"
